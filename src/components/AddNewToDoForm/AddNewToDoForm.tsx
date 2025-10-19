@@ -72,7 +72,7 @@ export const ToDoForm = ({ onSubmit }: TodoFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form action="/api/todos" method="POST" onSubmit={handleSubmit}>
       <div className="field">
         <span>Title: </span>
         <input
