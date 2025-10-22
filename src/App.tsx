@@ -14,7 +14,7 @@ export const App = () => {
   const aggregatedTodos = getAggregateTodos(todos, usersFromServer);
 
   const handleAddTodo = (todoWithoutId: Omit<Todo, 'id'>) => {
-    const maxId = Math.max(...todos.map(todo => todo.id));
+    const maxId = todos.length ? Math.max(...todos.map(todo => todo.id)) : 0;
 
     setTodos(currentTodos => [
       ...currentTodos,
@@ -28,7 +28,7 @@ export const App = () => {
   return (
     <div className="App">
       <h1>Add todo form</h1>
-      <ToDoForm onSubmit={handleAddTodo} />
+      <ToDoForm users={usersFromServer} onSubmit={handleAddTodo} />
       <TodoList todos={aggregatedTodos} />
     </div>
   );

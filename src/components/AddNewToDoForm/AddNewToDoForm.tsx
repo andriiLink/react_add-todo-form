@@ -1,14 +1,14 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import usersFromServer from '../../api/users';
 import { User } from '../../domain/User';
 import { Todo } from '../../domain/Todo';
 import { Nullable } from '../../domain/Nullable';
 
 type TodoFormProps = {
+  users: User[];
   onSubmit: (todo: Omit<Todo, 'id'>) => void;
 };
 
-export const ToDoForm = ({ onSubmit }: TodoFormProps) => {
+export const ToDoForm = ({ users, onSubmit }: TodoFormProps) => {
   const [title, setTitle] = useState('');
   const [titleError, setTitleError] = useState<Nullable<string>>(null);
 
@@ -91,7 +91,7 @@ export const ToDoForm = ({ onSubmit }: TodoFormProps) => {
           <option value="0" disabled>
             Choose a user
           </option>
-          {usersFromServer.map((user: User) => {
+          {users.map((user: User) => {
             return (
               <option key={user.id} value={user.id}>
                 {user.name}
